@@ -10,7 +10,10 @@
         <button class="btn" v-on:click = 'generarNumero'>Generar número</button>      
       </div>
       <div>
-          <textarea class="tablero" rows="5"></textarea>
+          <div class="tablero">{{ result }}</div>
+      </div>
+      <div class="guess-box">
+           <input type="text" class="input-guess" placeholder="Guess..." v-model = "query" v-on:keypress="fetchGuessNumber">      
       </div>
     </main>
   </div>
@@ -20,13 +23,31 @@
 export default {
     data () {
     return{
-        url_base: "https://api.openweathermap.org/data/2.5/",
+        url_base: "http://localhost:3000/api",
         query: '',
+        number: '',
+        result: '',
         }
     },
     methods: {
         generarNumero(){
-            console.log('numero')
+            fetch(`${this.url_base}/randomNumber`).then(res => {
+                return res.json();
+            }).then(this.setNumber);
+        },
+        setNumber (num){
+            this.number = num;
+        },
+        fetchGuessNumber (e) {
+        if(e.key == "Enter"){
+            fetch(`${this.url_base}/guessNumber?number=${this.query}`)
+            .then(res => {
+                return res.json();
+            }).then(this.setResults);
+        }
+        },
+        setResults (results){
+            this.result = results;
         }
     },
     

@@ -10,7 +10,7 @@
         <button class="btn" v-on:click = 'generarNumero'>Generar número</button>      
       </div>
       <div>
-          <div class="tablero">{{ result }}</div>
+          <div class="tablero">{{ result.mensaje }}</div>
       </div>
       <div class="guess-box">
            <input type="text" class="input-guess" placeholder="Guess..." v-model = "query" v-on:keypress="fetchGuessNumber">      
@@ -36,7 +36,7 @@ export default {
             }).then(this.setNumber);
         },
         setNumber (num){
-            this.number = num;
+            this.number = num.ramdonNumber;
         },
         fetchGuessNumber (e) {
         if(e.key == "Enter"){
@@ -71,7 +71,8 @@ export default {
 }
 
 .tablero{
-    width: 500px;
+    border: 2px #008CBA;
+    text-align: center;
 }
 
 

@@ -10,10 +10,10 @@
         <button class="btn" v-on:click = 'generarNumero'>Generar número</button>      
       </div>
       <div>
-          <div class="tablero">{{ result.mensaje }}</div>
+          <div class="tablero" name="tablero">{{ result.mensaje }}</div>
       </div>
       <div class="guess-box">
-           <input type="text" class="input-guess" placeholder="Guess..." v-model = "query" v-on:keypress="fetchGuessNumber">      
+           <input type="number" name="inputGuess" class="input-guess" placeholder="Guess..." v-model = "query" v-on:keypress="fetchGuessNumber">      
       </div>
     </main>
   </div>
